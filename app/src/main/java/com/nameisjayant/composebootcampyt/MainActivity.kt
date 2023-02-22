@@ -10,9 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.nameisjayant.composebootcampyt.bootcamp.BootCampOne
-import com.nameisjayant.composebootcampyt.bootcamp.BootcampThree
-import com.nameisjayant.composebootcampyt.bootcamp.TextViewLayout
+import com.nameisjayant.composebootcampyt.bootcamp.*
 import com.nameisjayant.composebootcampyt.ui.theme.ComposeBootcampYTTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    BootcampThree()
+                    ManageStateScreen()
                 }
             }
         }
