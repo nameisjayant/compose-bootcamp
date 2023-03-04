@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import com.nameisjayant.composebootcampyt.ui.theme.customFont
 
 @Composable
-fun TextViewLayout() {
+fun TextViewLayoutOne() {
 
     Text(text = "Jayant, how are yoou ?", style = TextStyle(
         color = Color.Red,
