@@ -1,60 +1,85 @@
 package com.nameisjayant.composebootcampyt.bootcamp
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement.SpaceBetween
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.nameisjayant.composebootcampyt.R
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun ImageLayoutScreen() {
-  //  ImageLayout()
-    IconLayout()
+fun ManageStateScreen() {
+   // CounterLayout()
+    TodoScreen()
 }
 
 @Composable
-fun ImageLayout() {
+fun CounterLayout() {
+
+   // val counter = rememberSaveable { mutableStateOf(0) }
+   // var counter by remember { mutableStateOf(0) }
+    val (counter,setCounter) = remember { mutableStateOf(0) }
 
     Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Image(
-            imageVector = Icons.Default.Home, contentDescription = "image",
-            modifier = Modifier.size(200.dp),
-          //  alignment = Alignment.BottomCenter
-        contentScale = ContentScale.FillWidth,
-            alpha = 0.5f,
-          //  colorFilter = ColorFilter.tint(color = Color.Red)
-        )
+        Text(text = "$counter", fontSize = 25.sp)
+        Spacer(modifier = Modifier.height(15.dp))
+        Button(onClick = {
+            setCounter(counter+1)
+        }) {
+            Text(text = "Counter")
+        }
     }
+
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun IconLayout() {
+fun TodoScreen() {
 
-   IconButton(onClick = {
+    val todoList = remember {mutableStateListOf("jayant","Nitin","Mayank")}
+    val scrollState = rememberScrollState()
+    val mapData = remember{ mutableStateMapOf("1" to "Jayant",2 to "Mayank") }
 
-   }) {
-       Icon(imageVector = Icons.Outlined.Home, contentDescription = "home",
-           modifier = Modifier.size(50.dp),
-           // tint = Color.Red
-       )
-   }
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = {
+                todoList.add("New User")
+            }) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "")
+            }
+        }
+    ) {
+        Column(
+            modifier = Modifier.verticalScroll(scrollState)
+        ) {
+            todoList.forEach {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp, start = 10.dp),
+                    horizontalArrangement = SpaceBetween
+                ) {
+                    Text(text = it)
+                    IconButton(onClick = {
+                        todoList.remove(it)
+                    }) {
+                        Icon(imageVector = Icons.Default.Delete, contentDescription = "" )
+                    }
+                }
+            }
+        }
+    }
 
 }

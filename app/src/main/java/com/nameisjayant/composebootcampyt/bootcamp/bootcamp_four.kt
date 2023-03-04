@@ -1,54 +1,54 @@
 package com.nameisjayant.composebootcampyt.bootcamp
 
-import android.widget.Toast
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
+@Composable
+fun ImageLayoutScreen() {
+  //  ImageLayout()
+    IconLayout()
+}
 
 @Composable
-fun ButtonLayout() {
-    val context = LocalContext.current
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-           Column() {
-               Button(onClick = {
-                   Toast.makeText(context,"Simple button",Toast.LENGTH_SHORT).show()
-               },
-                   modifier = Modifier
-                       .fillMaxWidth()
-                       .padding(15.dp),
-                   elevation = ButtonDefaults.elevation(
-                       defaultElevation = 0.dp
-                   ),
-                   shape = CircleShape,
-                   border = BorderStroke(5.dp, Color.Red),
-                   colors = ButtonDefaults.buttonColors(
-                       backgroundColor = Color.Black,
-                       contentColor = Color.White
-                   ),
-                   contentPadding = PaddingValues(
-                       vertical = 15.dp
-                   )
-               ) {
-                   Text(text = "Simple button")
-               }
+fun ImageLayout() {
 
-               OutlinedButton(onClick = {}) {
-                   Text(text = "Outlined Button")
-               }
-               TextButton(onClick = { /*TODO*/ }) {
-                   Text(text = "Text Button")
-               }
-           }
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            imageVector = Icons.Default.Home, contentDescription = "image",
+            modifier = Modifier.size(200.dp),
+          //  alignment = Alignment.BottomCenter
+        contentScale = ContentScale.FillWidth,
+            alpha = 0.5f,
+          //  colorFilter = ColorFilter.tint(color = Color.Red)
+        )
     }
+}
+
+@Composable
+fun IconLayout() {
+
+   IconButton(onClick = {
+
+   }) {
+       Icon(imageVector = Icons.Outlined.Home, contentDescription = "home",
+           modifier = Modifier.size(50.dp),
+           // tint = Color.Red
+       )
+   }
 
 }
