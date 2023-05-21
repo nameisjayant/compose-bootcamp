@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.nameisjayant.composebootcampyt.bootcamp.PagerScreen
 import com.nameisjayant.composebootcampyt.bootcamp.RecyclerViewLayout
 import com.nameisjayant.composebootcampyt.bootcamp.SpannableTextLayout
 import com.nameisjayant.composebootcampyt.bootcamp.TextFieldLayout
@@ -17,12 +18,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeBootcampYTTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    RecyclerViewLayout()
+                    PagerScreen()
                 }
             }
         }
